@@ -1,5 +1,5 @@
 category: Devel
-requires: linux-i686-gcc-core linux-i686-gcc-g++ linux-i686-gcc-ada linux-i686-gcc-fortran linux-i686-gcc-objc
+requires: linux-i686-gcc-core linux-i686-gcc-g++ linux-i686-gcc-ada linux-i686-gcc-fortran linux-i686-gcc-java linux-i686-gcc-objc
 sdesc: "GCC for Linux i686 toolchain (meta-package)"
 ldesc: "The GNU Compiler Collection includes front ends for C, C++, 
 Objective-C, Fortran, Java, and Ada, as well as libraries for these 

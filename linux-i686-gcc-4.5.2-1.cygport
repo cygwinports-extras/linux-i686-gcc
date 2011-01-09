@@ -22,15 +22,17 @@ case ${#PV[3]} in
 	SRC_DIR="gcc-${PV}"
 	;;
 esac
+SRC_URI="mirror://gnu/gcc/gcc-${PV}/gcc-${PV}.tar.bz2"
 
 PATCH_URI="config-rpath.patch"
 
-PKG_NAMES="${PN} ${PN}-core ${PN}-g++ ${PN}-ada ${PN}-fortran ${PN}-objc"
+PKG_NAMES="${PN} ${PN}-core ${PN}-g++ ${PN}-ada ${PN}-fortran ${PN}-java ${PN}-objc"
 
 CYGCONF_ARGS="
-	--enable-languages=c,c++,ada,fortran,lto,objc,obj-c++
+	--enable-languages=c,c++,ada,fortran,java,lto,objc,obj-c++
 	--enable-version-specific-runtime-libs
 	--with-dwarf2
+	--with-ecj-jar=/usr/share/java/ecj.jar
 	--with-system-zlib
 "
 
@@ -41,8 +43,8 @@ src_install() {
 	# Remove Cygwin-host libiberty.a
 	rm -f ${D}/usr/lib/libiberty.a
 
-#	dodir ${TOOLCHAIN_SYSROOT}/usr/lib/pkgconfig
-#	mv ${D}/usr/lib/pkgconfig/* ${D}${TOOLCHAIN_SYSROOT}/usr/lib/pkgconfig/
+	dodir ${TOOLCHAIN_SYSROOT}/usr/lib/pkgconfig
+	mv ${D}/usr/lib/pkgconfig/* ${D}${TOOLCHAIN_SYSROOT}/usr/lib/pkgconfig/
 
 	# conflicts with native gcc
 	rm -fr ${D}/usr/share/{gcc-*,info,locale,man/man7}
