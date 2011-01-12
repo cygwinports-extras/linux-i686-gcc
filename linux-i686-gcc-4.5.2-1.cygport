@@ -7,24 +7,18 @@ HOMEPAGE="http://gcc.gnu.org/"
 
 case ${#PV[3]} in
 8)	snapshot_v="${PV[1]}.${PV[2]}-${PV[3]}"
-	SRC_URI="mirror://gcc/snapshots/${snapshot_v}/gcc-core-${snapshot_v}.tar.bz2
-		mirror://gcc/snapshots/${snapshot_v}/gcc-ada-${snapshot_v}.tar.bz2
-		mirror://gcc/snapshots/${snapshot_v}/gcc-fortran-${snapshot_v}.tar.bz2
-		mirror://gcc/snapshots/${snapshot_v}/gcc-g++-${snapshot_v}.tar.bz2
-		mirror://gcc/snapshots/${snapshot_v}/gcc-objc-${snapshot_v}.tar.bz2"
+	SRC_URI="mirror://gcc/snapshots/${snapshot_v}/gcc-${snapshot_v}.tar.bz2"
 	SRC_DIR="gcc-${snapshot_v}"
 	;;
-*)	SRC_URI="mirror://gnu/gcc/gcc-${PV}/gcc-core-${PV}.tar.bz2
-		mirror://gnu/gcc/gcc-${PV}/gcc-ada-${PV}.tar.bz2
-		mirror://gnu/gcc/gcc-${PV}/gcc-fortran-${PV}.tar.bz2
-		mirror://gnu/gcc/gcc-${PV}/gcc-g++-${PV}.tar.bz2
-		mirror://gnu/gcc/gcc-${PV}/gcc-objc-${PV}.tar.bz2"
+*)	SRC_URI="mirror://gnu/gcc/gcc-${PV}/gcc-${PV}.tar.bz2"
 	SRC_DIR="gcc-${PV}"
 	;;
 esac
-SRC_URI="mirror://gnu/gcc/gcc-${PV}/gcc-${PV}.tar.bz2"
 
-PATCH_URI="config-rpath.patch"
+PATCH_URI="
+	config-rpath.patch
+	4.5.2-cross-ecjx.patch
+"
 
 PKG_NAMES="${PN} ${PN}-core ${PN}-g++ ${PN}-ada ${PN}-fortran ${PN}-java ${PN}-objc"
 
